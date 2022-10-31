@@ -1,0 +1,37 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "services:start": "docker-compose up --build -d",
+    "services:stop": "docker-compose down",
+    "db:up": "dotenv -- pg-bump -f database/migrations up",
+    "db:down": "dotenv -- pg-bump -f database/migrations down",
+    "db:make": "pg-bump -f database/migrations make"
+  },
+  "dependencies": {
+    "@types/cookie": "^0.5.1",
+    "@types/cookie-signature": "^1.0.4",
+    "argon2": "^0.30.1",
+    "cookie": "^0.5.0",
+    "cookie-signature": "^1.2.0",
+    "dotenv": "^16.0.3",
+    "next": "^13.0.0",
+    "pg-bump": "^4.0.0",
+    "postgres": "^3.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uid-safe": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.7",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@types/uid-safe": "^2.1.2",
+    "dotenv-cli": "^6.0.0",
+    "eslint": "^8.26.0",
+    "eslint-config-next": "^13.0.0",
+    "typescript": "^4.8.4"
+  }
+}
