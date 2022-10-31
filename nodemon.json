@@ -1,5 +1,13 @@
 {
-  "exec": "node --no-warnings --unhandled-rejections=strict --loader ts-node/esm -r ts-node/register",
+  "$schema": "https://json.schemastore.org/nodemon.json",
+  "quiet": true,
+  "exec": "node",
+  "execArgs": [
+    "--no-warnings",
+    "--loader=ts-node/esm",
+    "--require=ts-node/register",
+    "--unhandled-rejections=strict"
+  ],
   "ext": "ts,json",
   "watch": [
     ".env",

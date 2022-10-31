@@ -41,13 +41,13 @@ const handler: NextApiHandler = async (req, res) => {
   }
   const { userId, username } = user
   const sessionId = await uid(18)
-  const signedSessionId = signature.sign(sessionId, COOKIE_SECRET)
   await withSql(async sql => {
     await sql`
       insert into "sessions" ("sessionId", "userId")
       values (${sessionId}, ${userId})
     `
   })
+  const signedSessionId = signature.sign(sessionId, COOKIE_SECRET)
   res.setHeader('Set-Cookie', cookie.serialize(COOKIE_NAME, signedSessionId, {
     path: '/',
     httpOnly: true,
