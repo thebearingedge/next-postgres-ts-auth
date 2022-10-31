@@ -1,0 +1,15 @@
+{
+  "exec": "node --no-warnings --unhandled-rejections=strict --loader ts-node/esm -r ts-node/register",
+  "ext": "ts,json",
+  "watch": [
+    ".env",
+    "api/",
+    "lib/",
+    "server/",
+    "database/",
+    "next.config.js"
+  ],
+  "events": {
+    "start": "node -e 'console.clear()'"
+  }
+}
