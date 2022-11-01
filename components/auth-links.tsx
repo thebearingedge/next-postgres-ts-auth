@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useSession } from '~lib/auth/context'
+import { useSession } from '~/lib/auth/context'
 
 export default function AuthLinks(): JSX.Element {
   const { user } = useSession()

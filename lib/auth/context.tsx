@@ -1,7 +1,5 @@
 'use client'
-import {
-  createElement, createContext, useState, useMemo, useContext, type ReactNode
-} from 'react'
+import { createContext, useState, useMemo, useContext, type ReactNode } from 'react'
 
 type User = {
   userId: number
@@ -32,5 +30,9 @@ export function SessionProvider({ user, children }: SessionProviderProps): JSX.E
     user: _user,
     setUser
   }), [_user])
-  return createElement(SessionContext.Provider, { value }, children)
+  return (
+    <SessionContext.Provider value={value}>
+      {children}
+    </SessionContext.Provider>
+  )
 }

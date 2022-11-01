@@ -5,6 +5,7 @@
   "execArgs": [
     "--no-warnings",
     "--loader=ts-node/esm",
+    "--require=tsconfig-paths/register",
     "--require=ts-node/register",
     "--unhandled-rejections=strict"
   ],

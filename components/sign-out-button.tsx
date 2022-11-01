@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useSession } from '~lib/auth/context'
+import { useSession } from '~/lib/auth/context'
 
 export default function SignOutButton(): JSX.Element {
   const router = useRouter()

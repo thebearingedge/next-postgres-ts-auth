@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, ChangeEvent, FormEvent } from 'react'
-import { useSession } from '~lib/auth/context'
+import { useSession } from '~/lib/auth/context'
 
 export default function SignInForm(): JSX.Element {
 
