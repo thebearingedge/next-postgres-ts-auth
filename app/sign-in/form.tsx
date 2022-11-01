@@ -1,17 +1,21 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useSession } from '~/lib/auth/context'
 
-export default function SignInForm(): JSX.Element {
+export default function SignInForm(): JSX.Element | null {
 
   const router = useRouter()
-  const { setUser } = useSession()
+  const { user, setUser } = useSession()
   const [values, setValues] = useState(() => ({ username: '', password: '' }))
 
   const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     setValues(values => ({ ...values, [name]: value }))
   }
+
+  useEffect(() => {
+    if (user != null) router.replace('/')
+  }, [user])
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,9 +30,10 @@ export default function SignInForm(): JSX.Element {
     if (res.ok) {
       const user = await res.json()
       setUser(user)
-      router.push('/')
     }
   }
+
+  if (user != null) return null
 
   return (
     <form onSubmit={handleSubmit}>
