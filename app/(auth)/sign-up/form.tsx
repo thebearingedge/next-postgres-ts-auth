@@ -3,19 +3,15 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useSession } from '~/lib/auth/context'
 
-export default function SignInForm(): JSX.Element | null {
+export default function SignUpForm(): JSX.Element | null  {
 
   const router = useRouter()
-  const { user, setUser } = useSession()
+  const { user } = useSession()
   const [values, setValues] = useState(() => ({ username: '', password: '' }))
 
   const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     setValues(values => ({ ...values, [name]: value }))
   }
-
-  useEffect(() => {
-    if (user != null) router.replace('/')
-  }, [user])
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,14 +22,13 @@ export default function SignInForm(): JSX.Element | null {
       },
       body: JSON.stringify(values)
     }
-    const res = await fetch('/api/sign-in', req)
-    if (res.ok) {
-      const user = await res.json()
-      setUser(user)
-    }
+    const res = await fetch('/api/sign-up', req)
+    if (res.ok) router.push('/sign-in')
   }
 
-  if (user != null) return null
+  useEffect(() => {
+    if (user != null) router.replace('/')
+  }, [user])
 
   return (
     <form onSubmit={handleSubmit}>
@@ -56,7 +51,7 @@ export default function SignInForm(): JSX.Element | null {
           onChange={handleChange} />
       </label>
       <div>
-        <button type="submit">Log in</button>
+        <button type="submit">Sign up</button>
       </div>
     </form>
   )

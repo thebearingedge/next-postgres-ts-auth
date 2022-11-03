@@ -1,3 +1,4 @@
+'use client'
 import AuthLinks from '~/components/auth-links'
 import SignOutButton from '~/components/sign-out-button'
 
