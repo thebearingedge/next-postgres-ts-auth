@@ -1,0 +1,22 @@
+{
+  "quiet": true,
+  "exec": "node",
+  "execArgs": [
+    "--no-warnings",
+    "--loader=ts-node/esm",
+    "--unhandled-rejections=strict",
+    "--require=tsconfig-paths/register"
+  ],
+  "ext": "ts,json",
+  "watch": [
+    ".env",
+    "api/",
+    "lib/",
+    "server/",
+    "database/",
+    "next.config.js"
+  ],
+  "events": {
+    "start": "node -e 'console.clear()'"
+  }
+}

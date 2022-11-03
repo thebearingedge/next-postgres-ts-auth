@@ -1,12 +1,12 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState, ChangeEvent, FormEvent } from 'react'
-import { useSession } from '~lib/auth/context'
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
+import { useSession } from '~/lib/auth/context'
 
 export default function SignInForm(): JSX.Element {
 
   const router = useRouter()
-  const { setUser } = useSession()
+  const { user, setUser } = useSession()
   const [values, setValues] = useState(() => ({ username: '', password: '' }))
 
   const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +29,10 @@ export default function SignInForm(): JSX.Element {
       router.push('/')
     }
   }
+
+  useEffect(() => {
+    if (user != null) router.replace('/')
+  }, [user])
 
   return (
     <form onSubmit={handleSubmit}>

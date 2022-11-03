@@ -1,4 +1,4 @@
-import postgres, { type Sql } from "postgres"
+import postgres, { Sql } from "postgres"
 
 type WithSqlCallback<T> = (sql: Sql) => Promise<T>
 

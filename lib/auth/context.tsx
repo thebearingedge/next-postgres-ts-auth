@@ -1,7 +1,5 @@
 'use client'
-import {
-  createElement, createContext, useState, useMemo, useContext, type ReactNode
-} from 'react'
+import { createContext, useState, useMemo, useContext, ReactNode } from 'react'
 
 type User = {
   userId: number
@@ -14,6 +12,7 @@ type SessionContextValue = {
 }
 
 export const SessionContext = createContext<SessionContextValue>({
+  user: undefined,
   setUser: () => {}
 })
 
@@ -23,7 +22,7 @@ export function useSession(): SessionContextValue {
 
 type SessionProviderProps = {
   user?: User
-  children?: ReactNode
+  children: ReactNode
 }
 
 export function SessionProvider({ user, children }: SessionProviderProps): JSX.Element {
@@ -32,5 +31,9 @@ export function SessionProvider({ user, children }: SessionProviderProps): JSX.E
     user: _user,
     setUser
   }), [_user])
-  return createElement(SessionContext.Provider, { value }, children)
+  return (
+    <SessionContext.Provider value={value}>
+      {children}
+    </SessionContext.Provider>
+  )
 }

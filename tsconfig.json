@@ -26,7 +26,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "~*": [
+      "~/*": [
         "./*"
       ]
     }
@@ -39,5 +39,12 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "ts-node": {
+    "swc": true,
+    "ignore": [
+      ".next/",
+      "(?:^|/)node_modules/"
+    ]
+  },
 }
